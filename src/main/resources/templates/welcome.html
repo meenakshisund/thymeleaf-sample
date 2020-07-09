@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Thymeleaf Example</title>
+<!--
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>-->
+
+</head>
+
+<body>
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>Spring Boot Web Thymeleaf Example</h1>
+        <h2>
+            <span th:text="'Hello, ' + ${name} + ' Welcome !!!'"></span>
+        </h2>
+    </div>
+
+    <table border="1">
+        <tbody>
+        <tr th:if="${report==null}">
+            <td colspan="2"> No data Available </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p> SUMMARY </p>
+
+    <table border="1">
+        <tbody>
+        <tr th:if="${report.summary==null}">
+            <td colspan="2"> Summary not available - Pls check </td>
+        </tr>
+
+        <tr th:each="summ : ${report.summary}">
+            <td><span th:text="${summ}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p> DIFFERENCE </p>
+
+    <table border="1">
+        <tbody>
+            <tr th:if="${report.difference==null}">
+                <td colspan="2"> XML and PDF do not have any difference </td>
+            </tr>
+            <tr th:each="diff : ${report.difference}">
+                <td><span th:text="${diff}"></span></td>
+            </tr>
+            </tr>
+        </tbody>
+    </table>
+
+    <p> MISSING ITEMS </p>
+
+    <table border="1">
+        <tbody>
+        <tr th:if="${report.missingItems==null}">
+            <td colspan="2"> PDF has no missing records</td>
+        </tr>
+
+        <tr th:each="diff : ${report.missingItems}">
+            <td><span th:text="${diff}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+<!-- /.container -->
+
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+</body>
+</html>
